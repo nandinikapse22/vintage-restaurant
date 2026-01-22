@@ -1,0 +1,64 @@
+
+
+    /* Hero Section */
+.hero-about {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff; /* Base color for text */
+}
+
+.hero-about {
+  background: url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+}
+
+
+
+.hero-about::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); /* Dark overlay */
+  z-index: 0; /* Make sure overlay is behind text */
+}
+
+.hero-about .hero-content {
+  position: relative;
+  z-index: 1; /* Bring text above overlay */
+  text-align: center;
+  color: #fff !important; /* Force white text */
+}
+
+.hero-about h1,
+.hero-about p {
+  color: #fff !important; /* Ensure all headings and paragraphs are white */
+}
+
+
+    .hero-content p:last-child {
+      font-style: italic;
+      margin-top: 10px;
+      color: #f8f8f8;
+    }
+
+    .btn-gold {
+      background-color: #ffcc00;
+      border: none;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .btn-gold:hover {
+      background-color: #ffdb4d;
+    }
+
+    footer {
+      margin-top: 50px;
+    }
+
+    #contactForm ::placeholder {
+    color: #ccc; /* Light gray for dark background */
+    opacity: 1;  /* Ensure it's fully visible */
+  }

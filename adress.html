@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Us | Vintage Restaurant & Bar</title>
+  <link rel="icon" type="image/png" href="img/restaurant-logo.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    body {
+      background-color: #000;
+      color: #f5c518;
+      font-family: "Poppins", sans-serif;
+    }
+    .navbar {
+      background-color: #000 !important;
+      border-bottom: 1px solid #f5c518;
+    }
+    .navbar .nav-link {
+      color: #f5c518 !important;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active {
+      color: #fff !important;
+    }
+    .btn-gold {
+      background-color: #f5c518;
+      color: #000;
+      font-weight: 600;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-gold:hover {
+      background-color: #d4a307;
+      color: #000;
+    }
+    .btn-outline-warning {
+      border-color: #f5c518;
+      color: #f5c518;
+    }
+    .btn-outline-warning:hover {
+      background-color: #f5c518;
+      color: #000;
+    }
+    .hero-section {
+      text-align: center;
+      padding: 80px 20px 30px;
+    }
+    .hero-section h1 {
+      font-size: 2.5rem;
+      color: #f5c518;
+      letter-spacing: 1px;
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+      border: 2px solid #f5c518;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .search-box input {
+      width: 50%;
+      min-width: 250px;
+      border-radius: 5px;
+      padding: 10px;
+      border: 1px solid #f5c518;
+      background: #111;
+      color: #f5c518;
+    }
+    .search-box input::placeholder {
+      color: #fff;
+      opacity: 0.8;
+    }
+    .search-box button {
+      background-color: #f5c518;
+      border: none;
+      color: #000;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    .search-box button:hover {
+      background-color: #d4a307;
+    }
+    .address-form {
+      background: #111;
+      padding: 30px;
+      border-radius: 10px;
+      border: 1px solid #f5c518;
+      margin-bottom: 40px;
+    }
+    .form-control {
+      background: #000;
+      color: #f5c518;
+      border: 1px solid #f5c518;
+    }
+    .form-control:focus {
+      box-shadow: 0 0 5px #f5c518;
+      border-color: #f5c518;
+    }
+    .form-control::placeholder {
+      color: #fff;
+      opacity: 0.8;
+    }
+    @media (max-width: 576px) {
+      .hero-section h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <img src="img/restaurant-logo.png" alt="Logo" style="height: 50px; border-radius: 50%;">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto text-center">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="reservation.html">Reservations</a></li>
+        <li class="nav-item"><a class="nav-link" href="offers.html">Offers</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <form class="d-flex align-items-center me-3">
+        <input class="form-control form-control-sm me-2" type="search" placeholder="Search dishes..." />
+        <button class="btn btn-gold btn-sm" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-outline-warning btn-sm"><i class="bi bi-person-circle"></i> Login</button>
+        <button class="btn btn-gold btn-sm" onclick="window.location.href='cart.html'"><i class="bi bi-cart3"></i> Cart</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section">
+  <h1><i class="bi bi-geo-alt-fill"></i> Find Your Location</h1>
+  <p class="text-light">Search your address or select your location on the map to fill your details below.</p>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search your address or area..." />
+    <button type="button" onclick="searchLocation()"><i class="bi bi-search"></i> Search</button>
+  </div>
+
+  <div id="map"></div>
+
+  <div class="address-form mt-4">
+    <h4 class="mb-3"><i class="bi bi-person-vcard"></i> Your Address Details</h4>
+    <form id="addressForm">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Full Name</label>
+          <input type="text" id="fullname" class="form-control" placeholder="Enter your full name" required />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Contact Number</label>
+<input type="text" id="contact" class="form-control" maxlength="10" placeholder="9876543210" required />        </div>
+        <div class="col-md-12">
+          <label class="form-label">Street Address</label>
+          <input type="text" id="street" class="form-control" placeholder="Flat / House No, Street, Area" required />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">City</label>
+          <input type="text" id="city" class="form-control" placeholder="City" required />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">State</label>
+          <input type="text" id="state" class="form-control" placeholder="State" required />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Pin Code</label>
+          <input type="text" id="pincode" class="form-control" placeholder="Pin Code" required />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Google Map Link (Optional)</label>
+          <input type="url" id="maplink" class="form-control" placeholder="https://goo.gl/maps/..." />
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-danger px-4 py-2" style="background-color: #f5c518; border: none;">
+          Proceed to Pay
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-light pt-5 pb-3">
+  <div class="container">
+    <div class="row gy-4">
+      <!-- 1️⃣ Brand -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+        <a href="{% url 'home' %}" class="d-inline-block mb-3">
+          <img
+            src="img/restaurant-logo.png"
+            alt="Vintage Store"
+            class="img-fluid rounded-circle"
+            style="max-width: 60px"
+          />
+        </a>
+        <p class="small mb-2">
+          Your one-stop shop for quality products and great deals.
+        </p>
+        <div class="d-flex gap-3">
+<a href="https://www.facebook.com/login" class="text-light" target="_blank">
+  <i class="bi bi-facebook fs-5"></i>
+</a>
+<a href="https://www.instagram.com/accounts/login/" class="text-light" target="_blank">
+  <i class="bi bi-instagram fs-5"></i>
+</a>
+<a href="https://twitter.com/login" class="text-light" target="_blank">
+  <i class="bi bi-twitter fs-5"></i>
+</a>
+<a href="https://www.linkedin.com/login" class="text-light" target="_blank">
+  <i class="bi bi-linkedin fs-5"></i>
+</a>
+
+        </div>
+      </div>
+
+      <!-- 2️⃣ Company -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <h6 class="text-warning mb-3">Company</h6>
+        <ul class="list-unstyled small">
+          <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+          <li><a href="about-us.html" class="text-light text-decoration-none">About Us</a></li>
+          <li><a href="menu.html" class="text-light text-decoration-none">Menu</a></li>
+            <li><a href="reservation.html" class="text-light text-decoration-none">Reservations</a></li>
+              <li><a href="offers.html" class="text-light text-decoration-none">Offers</a></li>
+          <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+      
+        </ul>
+      </div>
+
+      <!-- 3️⃣ Customer Care -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <h6 class="text-warning mb-3">Customer Care</h6>
+        <ul class="list-unstyled small">
+          <li><a href="faq.html" class="text-light text-decoration-none">FAQs</a></li>
+          <li><a href="shipping-policy.html" class="text-light text-decoration-none">Shipping Policy</a></li>
+          <li><a href="refund-policy.html" class="text-light text-decoration-none">Refund Policy</a></li>
+          <li><a href="privacy-policy.html" class="text-light text-decoration-none">Privacy Policy</a></li>
+          <li><a href="terms-and-conditions.html" class="text-light text-decoration-none">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- 4️⃣ Contact -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h6 class="text-warning mb-3">Contact Us</h6>
+        <p class="small mb-1">
+          <i class="bi bi-telephone-fill me-2 text-warning"></i>
+          <a href="tel:7717795204" class="text-light text-decoration-none">+91 77177 95204</a>
+        </p>
+        <p class="small mb-1">
+          <i class="bi bi-envelope-fill me-2 text-warning"></i>
+          <a href="mailto:support@vintagecart.com" class="text-light text-decoration-none">
+            support@vintagecart.com
+          </a>
+        </p>
+        <p class="small mb-0">
+          <i class="bi bi-geo-alt-fill me-2 text-warning"></i>
+          123 Market Avenue, City Center, India
+        </p>
+      </div>
+
+      <!-- 5️⃣ Newsletter -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h6 class="text-warning mb-3">Join Our Newsletter</h6>
+        <p class="small">Subscribe to get updates on sales and new arrivals.</p>
+        <form class="d-flex">
+          <input
+            type="email"
+            class="form-control form-control-sm me-2"
+            placeholder="Enter your email"
+          />
+          <button type="submit" class="btn btn-warning btn-sm">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <hr class="border-secondary mt-4 mb-3" />
+
+    <!-- ✅ Footer bottom in one line -->
+    <div class="text-center small d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
+      <span>© 2025 VintageCart | All Rights Reserved</span>
+      <span>|</span>
+      <span>
+        Designed by
+        <a
+          href="https://kavyainfoweb.com/"
+          class="text-warning text-decoration-none"
+          target="_blank"
+        >Kavya Infoweb Pvt Ltd</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("addressForm");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault(); // stop form submission
+
+    const fullname = document.getElementById("fullname").value.trim();
+    const contact = document.getElementById("contact").value.trim();
+    const street = document.getElementById("street").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const state = document.getElementById("state").value.trim();
+    const pincode = document.getElementById("pincode").value.trim();
+
+    // Regex patterns
+    const nameRegex = /^[A-Za-z\s]+$/;          // letters and spaces only
+    const phoneRegex = /^\d{10}$/;              // exactly 10 digits
+    const pinRegex = /^\d{6}$/;                 // Indian pin code 6 digits
+    const streetRegex = /^[A-Za-z0-9\s,.-]+$/; // street with letters, numbers, comma, dot, hyphen
+
+    // Full Name Validation
+    if (!nameRegex.test(fullname)) {
+      alert("Full Name must contain only letters and spaces.");
+      document.getElementById("fullname").focus();
+      return false;
+    }
+
+    // Street Validation
+    if (!streetRegex.test(street)) {
+      alert("Street Address contains invalid characters.");
+      document.getElementById("street").focus();
+      return false;
+    }
+
+    // City Validation
+    if (!nameRegex.test(city)) {
+      alert("City must contain only letters and spaces.");
+      document.getElementById("city").focus();
+      return false;
+    }
+
+    // State Validation
+    if (!nameRegex.test(state)) {
+      alert("State must contain only letters and spaces.");
+      document.getElementById("state").focus();
+      return false;
+    }
+
+    // Pin Code Validation
+    if (!pinRegex.test(pincode)) {
+      alert("Pin Code must be exactly 6 digits.");
+      document.getElementById("pincode").focus();
+      return false;
+    }
+
+    // Contact Number Validation
+    // Remove everything except digits
+    const digitsOnly = contact.replace(/\D/g, "");
+    if (!phoneRegex.test(digitsOnly)) {
+      alert("Contact Number must be exactly 10 digits.");
+      document.getElementById("contact").focus();
+      return false;
+    }
+
+    // If all validations pass
+    alert("Form submitted successfully!");
+    window.location.href = "payment-getway.html";
+  });
+
+  // Optional: Prevent invalid characters while typing in name, city, state
+  const allowLetters = ["fullname", "city", "state"];
+  allowLetters.forEach(id => {
+    const input = document.getElementById(id);
+    input.addEventListener("input", () => {
+      input.value = input.value.replace(/[^A-Za-z\s]/g, "");
+    });
+  });
+
+  // Optional: Prevent letters in phone & pincode
+  const onlyDigits = ["contact", "pincode"];
+  onlyDigits.forEach(id => {
+    const input = document.getElementById(id);
+    input.addEventListener("input", () => {
+      input.value = input.value.replace(/\D/g, "");
+    });
+  });
+});
+</script>
+
+
+
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</body>
+</html>

@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home | Vintage Restaurant & Bar</title>
+  <link rel="icon" type="image/png" href="img/restaurant-logo.png">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <style>
+    /* CART PANEL STYLING */
+#cartPanel {
+  position: fixed;
+  top: 0;
+  right: -350px; /* Hidden by default */
+  width: 350px;
+  height: 100%;
+  background: #000; /* black background */
+  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  transition: right 0.3s ease;
+  z-index: 9999;
+  overflow-y: auto;
+  font-family: 'Poppins', sans-serif;
+  color: #fff; /* text color white */
+  display: flex;
+  flex-direction: column;
+}
+
+#cartPanel.active {
+  right: 0;
+}
+
+#cartClose {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ff9800;
+}
+
+#cartPanelBody {
+  margin-top: 40px;
+  flex: 1; /* take available space */
+  overflow-y: auto;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-bottom: 1px solid #333;
+}
+
+.cart-item h6 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0;
+  color: #fff;
+}
+
+.cart-item p {
+  margin: 0;
+  font-weight: 600;
+  color: #ff9800;
+}
+
+/* Checkout button inside panel */
+#checkoutBtn {
+  margin-top: 15px;
+  padding: 12px;
+  background: #ff9800;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+#checkoutBtn:hover {
+  background: #e68a00;
+}
+
+/* Scrollbar Styling */
+#cartPanel::-webkit-scrollbar {
+  width: 6px;
+}
+
+#cartPanel::-webkit-scrollbar-thumb {
+  background: #ff9800;
+  border-radius: 3px;
+}
+
+#cartPanel::-webkit-scrollbar-track {
+  background: #111;
+}
+  </style>
+
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <img src="img/restaurant-logo.png" alt="Logo">
+      
+    </a>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="reservation.html">Reservations</a></li>
+        <li class="nav-item"><a class="nav-link" href="offers.html">Offers</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <form class="d-flex me-3">
+        <input class="form-control form-control-sm me-2" type="search" placeholder="Search dishes...">
+        <button class="btn btn-gold btn-sm" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-light btn-sm"><i class="bi bi-person-circle"></i> Login</button>
+        <button class="btn btn-gold btn-sm" onclick="window.location.href='cart.html'">
+  <i class="bi bi-cart3"></i> Cart
+</button>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="heroCarousel" class="carousel slide mt-3 container" data-bs-ride="carousel">
+  <div class="carousel-inner rounded-4 overflow-hidden">
+    <div class="carousel-item active hero-slide">
+      <img src="img/hero-img.jpg" class="d-block w-100" alt="">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>Golden Nights & Fine Taste</h3>
+        <p>Experience the art of fine dining and crafted drinks.</p>
+      </div>
+    </div>
+    <div class="carousel-item hero-slide">
+      <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" class="d-block w-100" alt="">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>Continental Italian</h3>
+        <p>Where every byte tells a story.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container my-5">
+  <div class="row">
+    <!-- SIDEBAR -->
+    <div class="col-md-3 mb-4">
+      <div class="category-sidebar">
+        <h5><i class="bi bi-list"></i> Categories</h5>
+        <ul class="mt-3">
+           <li><a href="#" class="text-white text-decoration-none d-block py-2">All Products</a></li>
+
+ <li><a href="breakfast.html" class="text-white text-decoration-none d-block py-2">Breakfast</a></li>
+  <li><a href="soups-and-salad.html" class="text-white text-decoration-none d-block py-2">Soups & Salads</a></li>
+  <li><a href="starters-and-appetizers.html" class="text-white text-decoration-none d-block py-2">Starters / Appetizers</a></li>
+  <li><a href="indian-cusine.html" class="text-white text-decoration-none d-block py-2">Indian Cuisine</a></li>
+  <li><a href="chinese-cuisine.html" class="text-white text-decoration-none d-block py-2">Chinese Cuisine</a></li>
+  <li><a href="continental-italian.html" class="text-white text-decoration-none d-block py-2">Continental / Italian</a></li>
+  <li><a href="breads-rice.html" class="text-white text-decoration-none d-block py-2">Breads & Rice</a></li>
+  <li><a href="desserts.html" class="text-white text-decoration-none d-block py-2">Desserts</a></li>
+  <li><a href="mocktails-shakes.html" class="text-white text-decoration-none d-block py-2">Mocktails & Shakes</a></li>
+  <li><a href="alcoholic-drinks.html" class="text-white text-decoration-none d-block py-2">Alcoholic Drinks</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PRODUCT SECTIONS -->
+   <div class="col-md-9">
+
+  <!-- All Products Section -->
+  <section id="all" class="mb-5">
+    <h4>All Products</h4>
+    <div class="row g-4">
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/index-img/kadhai-paneer.jpg');"></div>
+          <div class="p-3">
+            <h6>Kadhai Paneer</h6>
+            <span class="price">₹499</span>
+            <div class="qty-controls" data-name="Kadhai Paneer" data-price="499">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/index-img/Slow-Cooked-Kashmiri-Rogan-Josh.jpg');"></div>
+          <div class="p-3">
+            <h6>Kashmiri Rogan</h6>
+            <span class="price">₹399</span>
+            <div class="qty-controls" data-name="Kashmiri Rogan" data-price="399">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/index-img/Crispy-Penne-Arrabbiata.jpg');"></div>
+          <div class="p-3">
+            <h6>Crispy Penne Arrabbiata</h6>
+            <span class="price">₹299</span>
+            <div class="qty-controls" data-name="Crispy Penne Arrabbiata" data-price="299">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/index-img/Stir-Fried-Broccoli.jpg');"></div>
+          <div class="p-3">
+            <h6>Stir Fried Broccoli</h6>
+            <span class="price">₹299</span>
+            <div class="qty-controls" data-name="Stir Fried Broccoli" data-price="299">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="show-more"><a href="menu.html">Show More >></a></div>
+  </section>
+
+  <!-- Starters Section -->
+  <section id="starters" class="mb-5">
+    <h4>Starters And Appetizers</h4>
+    <div class="row g-4">
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/index-img/pan-seared-loaded-nachos.jpg');"></div>
+          <div class="p-3">
+            <h6>Pan Loaded Nachos</h6>
+            <span class="price">₹249</span>
+            <div class="qty-controls" data-name="Pan Loaded Nachos" data-price="249">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/index-img/hara-bhara-kabab.jpg');"></div>
+          <div class="p-3">
+            <h6>Hara Bhara Kabab</h6>
+            <span class="price">₹699</span>
+            <div class="qty-controls" data-name="Hara Bhara Kabab" data-price="699">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/index-img/samosa-chat.jpg');"></div>
+          <div class="p-3">
+            <h6>Honey Glazed Samosa Chaat</h6>
+            <span class="price">₹799</span>
+            <div class="qty-controls" data-name="Honey Glazed Samosa Chaat" data-price="799">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/index-img/Pan-Seared Bruschetta.jpg');"></div>
+          <div class="p-3">
+            <h6>Pan Seared Bruschetta</h6>
+            <span class="price">₹349</span>
+            <div class="qty-controls" data-name="Pan Seared Bruschetta" data-price="349">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="show-more"><a href="starters-and-appetizers.html">Show More >></a></div>
+  </section>
+
+  <!-- Desserts Section -->
+  <section id="desserts" class="mb-5">
+    <h4>Desserts</h4>
+    <div class="row g-4">
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/index-img/Panna Cotta.jpg');"></div>
+          <div class="p-3">
+            <h6>Panna Cotta</h6>
+            <span class="price">₹299</span>
+            <div class="qty-controls" data-name="Panna Cotta" data-price="299">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/index-img/cheezecake.jpg');"></div>
+          <div class="p-3">
+            <h6>Cheesecake</h6>
+            <span class="price">₹349</span>
+            <div class="qty-controls" data-name="Cheesecake" data-price="349">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/index-img/Grilled Kheer.jpg');"></div>
+          <div class="p-3">
+            <h6>Grilled Kheer</h6>
+            <span class="price">₹199</span>
+            <div class="qty-controls" data-name="Grilled Kheer" data-price="199">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/index-img/dessert-1.jpg');"></div>
+          <div class="p-3">
+            <h6>Sticky Toffee Pudding</h6>
+            <span class="price">₹249</span>
+            <div class="qty-controls" data-name="Sticky Toffee Pudding" data-price="249">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="show-more"><a href="desserts.html">Show More >></a></div>
+  </section>
+
+  <!-- Mocktails Section -->
+  <section id="mocktails" class="mb-5">
+    <h4>Mocktails and Shakes</h4>
+    <div class="row g-4">
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/mocktails/cherry-blast.jpg');"></div>
+          <div class="p-3">
+            <h6>Cherry Blast</h6>
+            <span class="price">₹299</span>
+            <div class="qty-controls" data-name="Cherry Blast" data-price="299">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/mocktails/virgin-mohito.jpg');"></div>
+          <div class="p-3">
+            <h6>Virgin Mohito</h6>
+            <span class="price">₹349</span>
+            <div class="qty-controls" data-name="Virgin Mohito" data-price="349">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/mocktails/Cucumber Cooler.jpg');"></div>
+          <div class="p-3">
+            <h6>Cucumber Cooler</h6>
+            <span class="price">₹199</span>
+            <div class="qty-controls" data-name="Cucumber Cooler" data-price="199">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/mocktails/Classic Virgin Pina Colada.jpg');"></div>
+          <div class="p-3">
+            <h6>Classic Virgin Pina Colada</h6>
+            <span class="price">₹249</span>
+            <div class="qty-controls" data-name="Classic Virgin Pina Colada" data-price="249">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="show-more"><a href="mocktails-shakes.html">Show More >></a></div>
+  </section>
+
+  <!-- Alcoholic Drinks Section -->
+  <section id="alcoholic" class="mb-5">
+    <h4>Alcoholic Drinks</h4>
+    <div class="row g-4">
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/alcohols/gin.jpg');"></div>
+          <div class="p-3">
+            <h6>Gin Tonic</h6>
+            <span class="price">₹299</span>
+            <div class="qty-controls" data-name="Gin Tonic" data-price="299">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/alcohols/wine.jpg');"></div>
+          <div class="p-3">
+            <h6>Wine</h6>
+            <span class="price">₹349</span>
+            <div class="qty-controls" data-name="Wine" data-price="349">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/alcohols/whisky.jpg');"></div>
+          <div class="p-3">
+            <h6>Whisky</h6>
+            <span class="price">₹199</span>
+            <div class="qty-controls" data-name="Whisky" data-price="199">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="product-card">
+          <div class="product-img" style="background-image:url('img/alcohols/gin.jpg');"></div>
+          <div class="p-3">
+            <h6>Beer</h6>
+            <span class="price">₹249</span>
+            <div class="qty-controls" data-name="Beer" data-price="249">
+              <button class="qty-btn minus">-</button>
+              <span class="qty-count">0</span>
+              <button class="qty-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="show-more"><a href="alcoholic-drinks.html">Show More >></a></div>
+  </section>
+
+</div>
+
+<!-- CART PANEL -->
+<div id="cartPanel" class="cart-panel">
+  <button id="cartClose">&times;</button>
+  <h5>Your Cart</h5>
+  <div id="cartPanelBody"></div>
+  <hr>
+  <h6>Total: ₹<span id="cartTotal">0</span></h6>
+  <!-- CART BUTTON INSIDE PANEL -->
+ <A href="cart.html"> <button id="checkoutBtn">View Cart</button></A>
+</div>
+
+
+
+
+<!-- FOOTER -->
+<footer class="bg-dark text-light pt-5 pb-3">
+  <div class="container">
+    <div class="row gy-4">
+      <!-- 1️⃣ Brand -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+        <a href="{% url 'home' %}" class="d-inline-block mb-3">
+          <img
+            src="img/restaurant-logo.png"
+            alt="Vintage Store"
+            class="img-fluid rounded-circle"
+            style="max-width: 60px"
+          />
+        </a>
+        <p class="small mb-2">
+          Your one-stop shop for quality products and great deals.
+        </p>
+        <div class="d-flex gap-3">
+<a href="https://www.facebook.com/login" class="text-light" target="_blank">
+  <i class="bi bi-facebook fs-5"></i>
+</a>
+<a href="https://www.instagram.com/accounts/login/" class="text-light" target="_blank">
+  <i class="bi bi-instagram fs-5"></i>
+</a>
+<a href="https://twitter.com/login" class="text-light" target="_blank">
+  <i class="bi bi-twitter fs-5"></i>
+</a>
+<a href="https://www.linkedin.com/login" class="text-light" target="_blank">
+  <i class="bi bi-linkedin fs-5"></i>
+</a>
+
+        </div>
+      </div>
+
+      <!-- 2️⃣ Company -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <h6 class="text-warning mb-3">Company</h6>
+        <ul class="list-unstyled small">
+          <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+          <li><a href="about-us.html" class="text-light text-decoration-none">About Us</a></li>
+          <li><a href="menu.html" class="text-light text-decoration-none">Menu</a></li>
+            <li><a href="reservation.html" class="text-light text-decoration-none">Reservations</a></li>
+              <li><a href="offers.html" class="text-light text-decoration-none">Offers</a></li>
+          <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+      
+        </ul>
+      </div>
+
+      <!-- 3️⃣ Customer Care -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <h6 class="text-warning mb-3">Customer Care</h6>
+        <ul class="list-unstyled small">
+          <li><a href="faq.html" class="text-light text-decoration-none">FAQs</a></li>
+          <li><a href="shipping-policy.html" class="text-light text-decoration-none">Shipping Policy</a></li>
+          <li><a href="refund-policy.html" class="text-light text-decoration-none">Refund Policy</a></li>
+          <li><a href="privacy-policy.html" class="text-light text-decoration-none">Privacy Policy</a></li>
+          <li><a href="terms-and-conditions.html" class="text-light text-decoration-none">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- 4️⃣ Contact -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h6 class="text-warning mb-3">Contact Us</h6>
+        <p class="small mb-1">
+          <i class="bi bi-telephone-fill me-2 text-warning"></i>
+          <a href="tel:7717795204" class="text-light text-decoration-none">+91 77177 95204</a>
+        </p>
+        <p class="small mb-1">
+          <i class="bi bi-envelope-fill me-2 text-warning"></i>
+          <a href="mailto:support@vintagecart.com" class="text-light text-decoration-none">
+            support@vintagecart.com
+          </a>
+        </p>
+        <p class="small mb-0">
+          <i class="bi bi-geo-alt-fill me-2 text-warning"></i>
+          123 Market Avenue, City Center, India
+        </p>
+      </div>
+
+      <!-- 5️⃣ Newsletter -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h6 class="text-warning mb-3">Join Our Newsletter</h6>
+        <p class="small">Subscribe to get updates on sales and new arrivals.</p>
+        <form class="d-flex">
+          <input
+            type="email"
+            class="form-control form-control-sm me-2"
+            placeholder="Enter your email"
+          />
+          <button type="submit" class="btn btn-warning btn-sm">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <hr class="border-secondary mt-4 mb-3" />
+
+    <!-- ✅ Footer bottom in one line -->
+    <div class="text-center small d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
+      <span>© 2025 VintageCart | All Rights Reserved</span>
+      <span>|</span>
+      <span>
+        Designed by
+        <a
+          href="https://kavyainfoweb.com/"
+          class="text-warning text-decoration-none"
+          target="_blank"
+        >Kavya Infoweb Pvt Ltd</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- <style>
+  /* Popup Styling */
+  .popup-container {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  .popup-box {
+    background: #000;
+    color: var(--gold, #ffcc00);
+    border: 2px solid var(--gold, #ffcc00);
+    padding: 25px 35px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+    max-width: 400px;
+    animation: popIn 0.5s ease-in-out;
+  }
+
+  .popup-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .popup-box span {
+    color: #ffcc00;
+    font-weight: bold;
+  }
+
+  .popup-box p {
+    font-size: 1rem;
+    color: #f5f5f5;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+</style> -->
+
+
+<!-- 🌟 Vintage Restaurant & Bar Popup -->
+<!-- <div id="vintagePopup" class="popup-container">
+  <div class="popup-box">
+    <h2>🍸 Welcome to <span>Vintage Restaurant & Bar</span></h2>
+    <p>Experience timeless flavors, crafted cocktails, and golden vibes. Relax. Dine. Celebrate the vintage way.</p>
+  </div>
+</div>
+
+
+
+<script>
+  // Show popup for 3 seconds on load
+  window.addEventListener('load', () => {
+    const popup = document.getElementById('vintagePopup');
+    setTimeout(() => {
+      popup.style.display = 'none';
+    }, 6000);
+  });
+</script> -->
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/index.js"></script>
+</body>
+</html>
+

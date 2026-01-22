@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+   <title>About Us | Vintage Restaurant & Bar</title>
+  <link rel="icon" type="image/png" href="img/restaurant-logo.png">
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    /* Hero Section */
+    .hero-about {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1544148103-0773bf10d330') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .hero-about::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .hero-content h1 {
+      font-size: 5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 5px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .hero-content p:last-child {
+      font-style: italic;
+      margin-top: 10px;
+      color: #f8f8f8;
+    }
+
+    /* About Section */
+    .about-section img {
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Why Choose Us */
+    .why-us i {
+      font-size: 2.5rem;
+      color: #d4af37;
+      margin-bottom: 15px;
+    }
+
+    .why-us h5 {
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    /* Team Section */
+    .team-member {
+      text-align: center;
+    }
+
+    .team-member img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 3px solid #d4af37;
+    }
+
+    .team-member h6 {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <img src="img/restaurant-logo.png" alt="Logo">
+      
+    </a>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link " href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="about-us.html">About Us</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="reservation.html">Reservations</a></li>
+        <li class="nav-item"><a class="nav-link" href="offers.html">Offers</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <form class="d-flex me-3">
+        <input class="form-control form-control-sm me-2" type="search" placeholder="Search dishes...">
+        <button class="btn btn-gold btn-sm" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-light btn-sm"><i class="bi bi-person-circle"></i> Login</button>
+        <button class="btn btn-gold btn-sm" onclick="window.location.href='cart.html'">
+  <i class="bi bi-cart3"></i> Cart
+</button>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- HERO SECTION -->
+<section class="hero-about">
+  <div class="hero-content">
+    <h1>Vintage</h1>
+    <p>Since 1932</p>
+    <p>Where every flavor tells a story.</p>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section class="about-section container my-5">
+  <div class="row align-items-center g-5">
+    <div class="col-md-6">
+      <img src="img/about-sec-img (1).jpg" alt="Our Restaurant" class="img-fluid">
+    </div>
+    <div class="col-md-6">
+      <h2 class="fw-bold mb-3">Our Story</h2>
+      <p>Established in 1932, Vintage Restaurant & Bar stands as a timeless symbol of classic elegance and culinary excellence. What began as a cozy family bistro has grown into a cherished landmark, where history, flavor, and hospitality come together.</p>
+      <p>For over a century, we’ve perfected the art of blending traditional recipes with modern finesse. From our wood-fired grills to handcrafted cocktails, every dish and drink carries the legacy of generations dedicated to the craft of fine dining.</p>
+      <p>Whether it’s an intimate dinner, a grand celebration, or a quiet evening at the bar, Vintage offers a warm, nostalgic ambiance that invites you to savor every moment — just as guests have done for more than 100 years.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-us py-5 bg-dark text-white">
+  <div class="container text-center">
+    <h2 class="mb-5 fw-bold">Why Choose Us</h2>
+    <div class="row g-4">
+      <div class="col-md-3">
+        <i class="fa-solid fa-star"></i> <!-- Dummy Icon -->
+        <h5>Premium Quality</h5>
+        <p>We use only the finest ingredients for authentic taste and freshness.</p>
+      </div>
+      <div class="col-md-3">
+        <i class="fa-solid fa-martini-glass"></i> <!-- Dummy Icon -->
+        <h5>Signature Drinks</h5>
+        <p>Crafted cocktails and beverages designed by expert mixologists.</p>
+      </div>
+      <div class="col-md-3">
+        <i class="fa-solid fa-utensils"></i> <!-- Dummy Icon -->
+        <h5>Graceful Surroundings</h5>
+        <p>A cozy, elegant setting perfect for families, couples, and friends.</p>
+      </div>
+      <div class="col-md-3">
+        <i class="fa-solid fa-music"></i> <!-- Dummy Icon -->
+        <h5>Live Music</h5>
+        <p>Enjoy live performances that elevate your dining experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEET OUR CHEFS -->
+<section class="team container my-5 text-center">
+  <h2 class="fw-bold mb-4">Meet Our Chefs</h2>
+  <p class="mb-5">Our chefs bring tradition and innovation together in every dish.</p>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="team-member">
+        <img src="img/platter.jpg" alt="">
+        <h6>Chef Arjun Patel</h6>
+        <small>Head Chef - Indian Cuisine</small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="team-member">
+        <img src="img/pastry.jpg" alt="">
+        <h6>Chef Ankita Sharma</h6>
+        <small>Pastry & Desserts</small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="team-member">
+        <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f" alt="">
+        <h6>Chef Sahil Shah</h6>
+        <small>Italian & Continental</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-dark text-light pt-5 pb-3">
+  <div class="container">
+    <div class="row gy-4">
+      <!-- 1️⃣ Brand -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+        <a href="{% url 'home' %}" class="d-inline-block mb-3">
+          <img
+            src="img/restaurant-logo.png"
+            alt="Vintage Store"
+            class="img-fluid rounded-circle"
+            style="max-width: 60px"
+          />
+        </a>
+        <p class="small mb-2">
+          Your one-stop shop for quality products and great deals.
+        </p>
+        <div class="d-flex gap-3">
+<a href="https://www.facebook.com/login" class="text-light" target="_blank">
+  <i class="bi bi-facebook fs-5"></i>
+</a>
+<a href="https://www.instagram.com/accounts/login/" class="text-light" target="_blank">
+  <i class="bi bi-instagram fs-5"></i>
+</a>
+<a href="https://twitter.com/login" class="text-light" target="_blank">
+  <i class="bi bi-twitter fs-5"></i>
+</a>
+<a href="https://www.linkedin.com/login" class="text-light" target="_blank">
+  <i class="bi bi-linkedin fs-5"></i>
+</a>
+
+        </div>
+      </div>
+
+      <!-- 2️⃣ Company -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <h6 class="text-warning mb-3">Company</h6>
+        <ul class="list-unstyled small">
+          <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+          <li><a href="about-us.html" class="text-light text-decoration-none">About Us</a></li>
+          <li><a href="menu.html" class="text-light text-decoration-none">Menu</a></li>
+            <li><a href="reservation.html" class="text-light text-decoration-none">Reservations</a></li>
+              <li><a href="offers.html" class="text-light text-decoration-none">Offers</a></li>
+          <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+      
+        </ul>
+      </div>
+
+      <!-- 3️⃣ Customer Care -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <h6 class="text-warning mb-3">Customer Care</h6>
+        <ul class="list-unstyled small">
+          <li><a href="faq.html" class="text-light text-decoration-none">FAQs</a></li>
+          <li><a href="shipping-policy.html" class="text-light text-decoration-none">Shipping Policy</a></li>
+          <li><a href="refund-policy.html" class="text-light text-decoration-none">Refund Policy</a></li>
+          <li><a href="privacy-policy.html" class="text-light text-decoration-none">Privacy Policy</a></li>
+          <li><a href="terms-and-conditions.html" class="text-light text-decoration-none">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- 4️⃣ Contact -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h6 class="text-warning mb-3">Contact Us</h6>
+        <p class="small mb-1">
+          <i class="bi bi-telephone-fill me-2 text-warning"></i>
+          <a href="tel:7717795204" class="text-light text-decoration-none">+91 77177 95204</a>
+        </p>
+        <p class="small mb-1">
+          <i class="bi bi-envelope-fill me-2 text-warning"></i>
+          <a href="mailto:support@vintagecart.com" class="text-light text-decoration-none">
+            support@vintagecart.com
+          </a>
+        </p>
+        <p class="small mb-0">
+          <i class="bi bi-geo-alt-fill me-2 text-warning"></i>
+          123 Market Avenue, City Center, India
+        </p>
+      </div>
+
+      <!-- 5️⃣ Newsletter -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h6 class="text-warning mb-3">Join Our Newsletter</h6>
+        <p class="small">Subscribe to get updates on sales and new arrivals.</p>
+        <form class="d-flex">
+          <input
+            type="email"
+            class="form-control form-control-sm me-2"
+            placeholder="Enter your email"
+          />
+          <button type="submit" class="btn btn-warning btn-sm">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <hr class="border-secondary mt-4 mb-3" />
+
+    <!-- ✅ Footer bottom in one line -->
+    <div class="text-center small d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
+      <span>© 2025 VintageCart | All Rights Reserved</span>
+      <span>|</span>
+      <span>
+        Designed by
+        <a
+          href="https://kavyainfoweb.com/"
+          class="text-warning text-decoration-none"
+          target="_blank"
+        >Kavya Infoweb Pvt Ltd</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

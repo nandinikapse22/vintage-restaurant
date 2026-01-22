@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Orders | Vintage Restaurant & Bar</title>
+   <link rel="icon" type="image/png" href="img/restaurant-logo.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+ <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    :root {
+      --gold: #ffcc00;
+      --dark: #0f0f0f;
+      --black: #1a1a1a;
+      --light: #f9f9f9;
+    }
+
+    body {
+      background: linear-gradient(to right, var(--black), var(--dark));
+      color: var(--light);
+      min-height: 100vh;
+      padding-bottom: 50px;
+    }
+
+    h2 {
+      color: var(--gold);
+      font-weight: 700;
+      text-align: center;
+      margin: 40px 0 30px;
+    }
+
+    .order-card {
+      background: #1e1e1e;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.2);
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .order-header h5 {
+      color: var(--gold);
+      margin: 0;
+    }
+
+    .order-items li {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 0;
+    }
+
+    .empty-orders {
+      text-align: center;
+      color: #bbb;
+      margin-top: 50px;
+    }
+
+    /* ✅ Order Tracking Bar */
+    .tracking {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .tracking::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      right: 10%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+
+    .tracking-step {
+      z-index: 1;
+      background: #333;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .tracking-step.active {
+      background: var(--gold);
+      color: var(--black);
+      transform: scale(1.1);
+      box-shadow: 0 0 10px var(--gold);
+    }
+
+    .tracking-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .tracking-labels span.active {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .btn-gold {
+  background-color: #ffcc00;
+  color: #1a1a1a;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn-gold:hover {
+  background-color: #e6b800;
+  color: #000;
+ 
+}
+
+.back-home-btn {
+  position: sticky;       /* Stick relative to its container */
+  top: 80px;              /* Distance from the top (adjust based on navbar height) */
+  z-index: 999;           /* Make sure it stays above other elements */
+  display: inline-block;
+  margin: 10px 0;
+}
+
+
+
+  </style>
+</head>
+
+<body>
+
+        <nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <img src="img/restaurant-logo.png" alt="Logo">
+      
+    </a>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="reservation.html">Reservations</a></li>
+        <li class="nav-item"><a class="nav-link" href="offers.html">Offers</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <form class="d-flex me-3">
+        <input class="form-control form-control-sm me-2" type="search" placeholder="Search dishes...">
+        <button class="btn btn-gold btn-sm" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-light btn-sm"><i class="bi bi-person-circle"></i> Login</button>
+        <button class="btn btn-gold btn-sm" onclick="window.location.href='cart.html'">
+  <i class="bi bi-cart3"></i> Cart
+</button>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+  <div class="container mt-5">
+    <h2><i class="bi bi-receipt-cutoff"></i> Your Order Details</h2>
+    <div id="ordersContainer"></div>
+
+    <!-- Back to Home Button -->
+    <div class="text-center mt-4 " style="margin-bottom: 20px;">
+        <a href="index.html" class="btn btn-gold px-4">
+            <i class="bi bi-arrow-left"></i> Back to Home
+        </a>
+    </div>
+</div>
+
+
+
+<footer class="bg-dark text-light pt-5 pb-3">
+  <div class="container">
+    <div class="row gy-4">
+      <!-- 1️⃣ Brand -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+        <a href="{% url 'home' %}" class="d-inline-block mb-3">
+          <img
+            src="img/restaurant-logo.png"
+            alt="Vintage Store"
+            class="img-fluid rounded-circle"
+            style="max-width: 60px"
+          />
+        </a>
+        <p class="small mb-2">
+          Your one-stop shop for quality products and great deals.
+        </p>
+        <div class="d-flex gap-3">
+<a href="https://www.facebook.com/login" class="text-light" target="_blank">
+  <i class="bi bi-facebook fs-5"></i>
+</a>
+<a href="https://www.instagram.com/accounts/login/" class="text-light" target="_blank">
+  <i class="bi bi-instagram fs-5"></i>
+</a>
+<a href="https://twitter.com/login" class="text-light" target="_blank">
+  <i class="bi bi-twitter fs-5"></i>
+</a>
+<a href="https://www.linkedin.com/login" class="text-light" target="_blank">
+  <i class="bi bi-linkedin fs-5"></i>
+</a>
+
+        </div>
+      </div>
+
+      <!-- 2️⃣ Company -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <h6 class="text-warning mb-3">Company</h6>
+        <ul class="list-unstyled small">
+          <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+          <li><a href="about-us.html" class="text-light text-decoration-none">About Us</a></li>
+          <li><a href="menu.html" class="text-light text-decoration-none">Menu</a></li>
+            <li><a href="reservation.html" class="text-light text-decoration-none">Reservations</a></li>
+              <li><a href="offers.html" class="text-light text-decoration-none">Offers</a></li>
+          <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+      
+        </ul>
+      </div>
+
+      <!-- 3️⃣ Customer Care -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <h6 class="text-warning mb-3">Customer Care</h6>
+        <ul class="list-unstyled small">
+          <li><a href="faq.html" class="text-light text-decoration-none">FAQs</a></li>
+          <li><a href="shipping-policy.html" class="text-light text-decoration-none">Shipping Policy</a></li>
+          <li><a href="refund-policy.html" class="text-light text-decoration-none">Refund Policy</a></li>
+          <li><a href="privacy-policy.html" class="text-light text-decoration-none">Privacy Policy</a></li>
+          <li><a href="terms-and-conditions.html" class="text-light text-decoration-none">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- 4️⃣ Contact -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h6 class="text-warning mb-3">Contact Us</h6>
+        <p class="small mb-1">
+          <i class="bi bi-telephone-fill me-2 text-warning"></i>
+          <a href="tel:7717795204" class="text-light text-decoration-none">+91 77177 95204</a>
+        </p>
+        <p class="small mb-1">
+          <i class="bi bi-envelope-fill me-2 text-warning"></i>
+          <a href="mailto:support@vintagecart.com" class="text-light text-decoration-none">
+            support@vintagecart.com
+          </a>
+        </p>
+        <p class="small mb-0">
+          <i class="bi bi-geo-alt-fill me-2 text-warning"></i>
+          123 Market Avenue, City Center, India
+        </p>
+      </div>
+
+      <!-- 5️⃣ Newsletter -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h6 class="text-warning mb-3">Join Our Newsletter</h6>
+        <p class="small">Subscribe to get updates on sales and new arrivals.</p>
+        <form class="d-flex">
+          <input
+            type="email"
+            class="form-control form-control-sm me-2"
+            placeholder="Enter your email"
+          />
+          <button type="submit" class="btn btn-warning btn-sm">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <hr class="border-secondary mt-4 mb-3" />
+
+    <!-- ✅ Footer bottom in one line -->
+    <div class="text-center small d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
+      <span>© 2025 VintageCart | All Rights Reserved</span>
+      <span>|</span>
+      <span>
+        Designed by
+        <a
+          href="https://kavyainfoweb.com/"
+          class="text-warning text-decoration-none"
+          target="_blank"
+        >Kavya Infoweb Pvt Ltd</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ✅ Order Status Sequence
+  const statusSteps = ["Confirmed", "Preparing", "Out for Delivery", "Delivered"];
+
+  // ✅ Load and Render Orders
+  function loadOrders() {
+    const ordersContainer = document.getElementById("ordersContainer");
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    if (orders.length === 0) {
+      ordersContainer.innerHTML = `<p class="empty-orders">No orders found. Place your first order from the menu!</p>`;
+      return;
+    }
+
+    ordersContainer.innerHTML = "";
+
+    orders.forEach((order, index) => {
+      const orderCard = document.createElement("div");
+      orderCard.classList.add("order-card");
+
+      // ✅ Ensure numeric conversion
+      order.items = order.items.map(item => ({
+        ...item,
+        price: Number(item.price) || 0,
+        quantity: Number(item.quantity) || 0
+      }));
+
+      // ✅ Calculate total dynamically
+      const total = order.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+      // ✅ Fix current step
+      const currentStep = statusSteps.indexOf(order.status || "Confirmed");
+
+      orderCard.innerHTML = `
+        <div class="order-header">
+          <h5>Order #${index + 1}</h5>
+          <small>${order.date || new Date().toLocaleString()}</small>
+        </div>
+
+        <ul class="order-items mt-3">
+          ${order.items.map(item => `
+            <li>${item.name} × ${item.quantity} — ₹${(item.price * item.quantity).toFixed(2)}</li>
+          `).join('')}
+        </ul>
+
+        <p class="mt-3 mb-1"><strong>Total:</strong> ₹${total.toFixed(2)}</p>
+
+        <div class="tracking mt-3">
+          ${statusSteps.map((step, i) => `
+            <div class="tracking-step ${i <= currentStep ? 'active' : ''}">
+              <i class="bi ${getStepIcon(step)}"></i>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="tracking-labels">
+          ${statusSteps.map((step, i) => `
+            <span class="${i <= currentStep ? 'active' : ''}">${step}</span>
+          `).join('')}
+        </div>
+      `;
+
+      ordersContainer.appendChild(orderCard);
+    });
+  }
+
+  // ✅ Get Icon for Each Step
+  function getStepIcon(status) {
+    switch (status) {
+      case "Confirmed": return "bi-check-circle";
+      case "Preparing": return "bi-fire";
+      case "Out for Delivery": return "bi-truck";
+      case "Delivered": return "bi-house-door";
+      default: return "bi-dot";
+    }
+  }
+
+  // ✅ Simulate Live Tracking (for demo)
+  function simulateTracking() {
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    orders = orders.map(order => {
+      const currentIndex = statusSteps.indexOf(order.status || "Confirmed");
+      if (currentIndex < statusSteps.length - 1) {
+        // Move to next stage every 10 seconds (example)
+        if (!order.lastUpdated || Date.now() - order.lastUpdated > 10000) {
+          order.status = statusSteps[currentIndex + 1];
+          order.lastUpdated = Date.now();
+        }
+      }
+      return order;
+    });
+
+    localStorage.setItem("orders", JSON.stringify(orders));
+    loadOrders();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadOrders();
+    // Update tracking every 10s
+    setInterval(simulateTracking, 10000);
+  });
+</script>
+
+</body>
+</html>

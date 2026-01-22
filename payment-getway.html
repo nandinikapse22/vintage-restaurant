@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Proceed to Pay | Vintage Restaurant & Bar</title>
+  <link rel="icon" type="image/png" href="img/restaurant-logo.png">
+
+  <!-- Bootstrap & icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    :root { --gold: #f5c518; }
+    body { background: #0f0f0f; color: #ddd; font-family: "Poppins", sans-serif; }
+    .navbar { background: #000; }
+    .btn-gold { background-color: var(--gold); color: #000; font-weight: 600; }
+    .btn-gold:hover { background-color: #ffdb4d; }
+    .payment-container { margin: 60px auto; max-width: 900px; }
+    .payment-option { background: #1e1e1e; border-radius: 10px; padding: 20px; margin-bottom: 20px; transition: all 0.3s ease; box-shadow: 0 0 10px rgba(255,215,0,0.08); }
+    .payment-option:hover { transform: translateY(-5px); box-shadow: 0 0 15px rgba(255,215,0,0.15); }
+    .payment-option input { accent-color: var(--gold); width: 18px; height: 18px; }
+    .confirmation { display: none; text-align: center; margin-top: 100px; }
+    .confirmation i { font-size: 4rem; color: var(--gold); margin-bottom: 20px; }
+    .muted { color: #aaa; font-size: .9rem; }
+
+    /* Added styles */
+    #cardForm { display: none; margin-top: 20px; background: #1e1e1e; padding: 20px; border-radius: 10px; }
+    #upiQRSection { display: none; text-align: center; margin-top: 20px; }
+    #upiQRSection img { width: 200px; height: 200px; border-radius: 10px; }
+    #upiSuccessMsg { display: none; color: var(--gold); font-size: 1.2rem; margin-top: 10px; font-weight: 600; }
+
+    /* Confirmation visible fix */
+    .confirmation {
+      background: #111;
+      color: #fff;
+      padding: 100px 20px;
+      min-height: 80vh;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .confirmation h3 {
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .confirmation a {
+      background-color: var(--gold);
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .confirmation a:hover {
+      background-color: #ffdf5c;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <img src="img/restaurant-logo.png" alt="Logo">
+      </a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="reservation.html">Reservations</a></li>
+          <li class="nav-item"><a class="nav-link" href="offers.html">Offers</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <form class="d-flex me-3">
+          <input class="form-control form-control-sm me-2" type="search" placeholder="Search dishes...">
+          <button class="btn btn-gold btn-sm" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-light btn-sm"><i class="bi bi-person-circle"></i> Login</button>
+          <button class="btn btn-gold btn-sm" onclick="window.location.href='cart.html'">
+            <i class="bi bi-cart3"></i> Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAYMENT SECTION -->
+  <div class="container payment-container" id="paymentSection">
+    <h3 class="text-warning mb-4 text-center">Choose Your Payment Method</h3>
+
+    <!-- Razorpay -->
+    <div class="payment-option d-flex align-items-center">
+      <input type="radio" name="payment" id="razorpay" />
+      <label for="razorpay" class="ms-3 w-100 d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-bolt-fill"></i> Pay with Card / Netbanking / UPI (Razorpay)</span>
+        <small class="muted">Fast, secure</small>
+      </label>
+    </div>
+
+    <!-- UPI -->
+    <div class="payment-option d-flex align-items-center">
+      <input type="radio" name="payment" id="upi_link" />
+      <label for="upi_link" class="ms-3 w-100 d-flex justify-content-between align-items-center">
+        <span></i> Pay via UPI (PhonePe / GPay / Paytm)</span>
+        <small class="muted">Opens UPI app</small>
+      </label>
+    </div>
+
+    <!-- COD -->
+    <div class="payment-option d-flex align-items-center">
+      <input type="radio" name="payment" id="cod" checked />
+      <label for="cod" class="ms-3 w-100 d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-cash-stack"></i> Cash on Delivery</span>
+        <small class="muted">Pay when order arrives</small>
+      </label>
+    </div>
+
+    <!-- Razorpay Card Form -->
+    <div id="cardForm">
+      <div class="mb-3">
+        <label class="form-label">Card Number</label>
+        <input type="text" id="cardNumber" class="form-control bg-dark text-light" placeholder="Enter 12 Digit Card Number" maxlength="12">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Valid Through (MM/YY)</label>
+        <input type="text" id="validThrough" class="form-control bg-dark text-light" placeholder="MM/YY" maxlength="5">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Cardholder Name</label>
+        <input type="text" id="cardName" class="form-control bg-dark text-light" placeholder="Name on Card">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Card Nickname</label>
+        <input type="text" id="cardNickname" class="form-control bg-dark text-light" placeholder="e.g. My SBI Card">
+      </div>
+    </div>
+
+    <!-- UPI QR -->
+    <div id="upiQRSection">
+      <p class="text-warning">Scan the QR Code to Pay</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi-payment-demo&size=200x200" alt="UPI QR">
+      <div id="upiSuccessMsg">Payment Successful ✅</div>
+    </div>
+
+    <div class="text-center mt-4 d-flex gap-3 justify-content-center">
+      <button type="button" class="btn btn-gold" id="payBtn">Proceed to Pay <i class="bi bi-arrow-right-circle"></i></button>
+      <a href="cart.html" class="btn btn-outline-light">Back</a>
+    </div>
+
+    <div class="mt-3 text-center muted">
+      <small>Note: For production, use your backend to create orders and verify payments securely.</small>
+    </div>
+  </div>
+
+  <!-- CONFIRMATION -->
+  <div class="container confirmation" id="confirmationSection">
+    <i class="bi bi-check-circle-fill"></i>
+    <h3 id="confirmTitle">Payment Successful!</h3>
+    <p id="confirmMessage">Thank you for your order at Robin’s Restaurant & Bar.</p>
+    <a href="order-page.html" class="btn btn-gold mt-4">Check Order Details</a>
+  </div>
+
+  <!-- FOOTER -->
+<footer class="bg-dark text-light pt-5 pb-3">
+  <div class="container">
+    <div class="row gy-4">
+      <!-- 1️⃣ Brand -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+        <a href="{% url 'home' %}" class="d-inline-block mb-3">
+          <img
+            src="img/restaurant-logo.png"
+            alt="Vintage Store"
+            class="img-fluid rounded-circle"
+            style="max-width: 60px"
+          />
+        </a>
+        <p class="small mb-2">
+          Your one-stop shop for quality products and great deals.
+        </p>
+        <div class="d-flex gap-3">
+<a href="https://www.facebook.com/login" class="text-light" target="_blank">
+  <i class="bi bi-facebook fs-5"></i>
+</a>
+<a href="https://www.instagram.com/accounts/login/" class="text-light" target="_blank">
+  <i class="bi bi-instagram fs-5"></i>
+</a>
+<a href="https://twitter.com/login" class="text-light" target="_blank">
+  <i class="bi bi-twitter fs-5"></i>
+</a>
+<a href="https://www.linkedin.com/login" class="text-light" target="_blank">
+  <i class="bi bi-linkedin fs-5"></i>
+</a>
+
+        </div>
+      </div>
+
+      <!-- 2️⃣ Company -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <h6 class="text-warning mb-3">Company</h6>
+        <ul class="list-unstyled small">
+          <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+          <li><a href="about-us.html" class="text-light text-decoration-none">About Us</a></li>
+          <li><a href="menu.html" class="text-light text-decoration-none">Menu</a></li>
+            <li><a href="reservation.html" class="text-light text-decoration-none">Reservations</a></li>
+              <li><a href="offers.html" class="text-light text-decoration-none">Offers</a></li>
+          <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+      
+        </ul>
+      </div>
+
+      <!-- 3️⃣ Customer Care -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <h6 class="text-warning mb-3">Customer Care</h6>
+        <ul class="list-unstyled small">
+          <li><a href="faq.html" class="text-light text-decoration-none">FAQs</a></li>
+          <li><a href="shipping-policy.html" class="text-light text-decoration-none">Shipping Policy</a></li>
+          <li><a href="refund-policy.html" class="text-light text-decoration-none">Refund Policy</a></li>
+          <li><a href="privacy-policy.html" class="text-light text-decoration-none">Privacy Policy</a></li>
+          <li><a href="terms-and-conditions.html" class="text-light text-decoration-none">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- 4️⃣ Contact -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h6 class="text-warning mb-3">Contact Us</h6>
+        <p class="small mb-1">
+          <i class="bi bi-telephone-fill me-2 text-warning"></i>
+          <a href="tel:7717795204" class="text-light text-decoration-none">+91 77177 95204</a>
+        </p>
+        <p class="small mb-1">
+          <i class="bi bi-envelope-fill me-2 text-warning"></i>
+          <a href="mailto:support@vintagecart.com" class="text-light text-decoration-none">
+            support@vintagecart.com
+          </a>
+        </p>
+        <p class="small mb-0">
+          <i class="bi bi-geo-alt-fill me-2 text-warning"></i>
+          123 Market Avenue, City Center, India
+        </p>
+      </div>
+
+      <!-- 5️⃣ Newsletter -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h6 class="text-warning mb-3">Join Our Newsletter</h6>
+        <p class="small">Subscribe to get updates on sales and new arrivals.</p>
+        <form class="d-flex">
+          <input
+            type="email"
+            class="form-control form-control-sm me-2"
+            placeholder="Enter your email"
+          />
+          <button type="submit" class="btn btn-warning btn-sm">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <hr class="border-secondary mt-4 mb-3" />
+
+    <!-- ✅ Footer bottom in one line -->
+    <div class="text-center small d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
+      <span>© 2025 VintageCart | All Rights Reserved</span>
+      <span>|</span>
+      <span>
+        Designed by
+        <a
+          href="https://kavyainfoweb.com/"
+          class="text-warning text-decoration-none"
+          target="_blank"
+        >Kavya Infoweb Pvt Ltd</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+  <!-- JS -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const cardForm = document.getElementById('cardForm');
+    const upiQRSection = document.getElementById('upiQRSection');
+    const upiSuccessMsg = document.getElementById('upiSuccessMsg');
+    const cardNumber = document.getElementById('cardNumber');
+    const validThrough = document.getElementById('validThrough');
+    const cardName = document.getElementById('cardName');
+    const cardNickname = document.getElementById('cardNickname');
+
+    // ✅ Default show COD option
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('cod').checked = true;
+      cardForm.style.display = 'none';
+      upiQRSection.style.display = 'none';
+    });
+
+    // Show/hide forms
+    document.querySelectorAll('input[name="payment"]').forEach(el => {
+      el.addEventListener('change', () => {
+        cardForm.style.display = (document.getElementById('razorpay').checked) ? 'block' : 'none';
+        upiQRSection.style.display = (document.getElementById('upi_link').checked) ? 'block' : 'none';
+        upiSuccessMsg.style.display = 'none';
+      });
+    });
+
+    document.getElementById('payBtn').addEventListener('click', () => {
+      const method = document.querySelector('input[name="payment"]:checked').id;
+
+      if (method === 'razorpay') {
+        if (!cardNumber.value.trim() || !validThrough.value.trim() || !cardName.value.trim() || !cardNickname.value.trim()) {
+          alert('Please fill in all card fields.');
+          return;
+        }
+        if (cardNumber.value.trim().length !== 12) {
+          alert('Card Number must be exactly 12 digits.');
+          return;
+        }
+        showConfirmation('Payment Successful!', 'Your payment was processed successfully.');
+      }
+      else if (method === 'upi_link') {
+        cardForm.style.display = 'none';
+        upiQRSection.style.display = 'block';
+        upiSuccessMsg.style.display = 'none';
+
+        setTimeout(() => {
+          upiSuccessMsg.style.display = 'block';
+          setTimeout(() => {
+            showConfirmation('Payment Successful!', 'Your UPI payment was processed successfully.');
+          }, 2000);
+        }, 2000);
+      }
+      else if (method === 'cod') {
+        showConfirmation('Order Placed (COD)', 'Your order has been placed. Pay when it arrives.');
+      }
+    });
+
+    function showConfirmation(title, msg) {
+      placeOrder();
+      document.getElementById('paymentSection').style.display = 'none';
+      const confirm = document.getElementById('confirmationSection');
+      confirm.style.display = 'flex';
+      document.getElementById('confirmTitle').innerText = title;
+      document.getElementById('confirmMessage').innerText = msg;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function placeOrder() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      if (cart.length === 0) return;
+      const order = {
+        date: new Date().toLocaleString(),
+        items: cart,
+        total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
+        status: "Confirmed"
+      };
+      const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
+      existingOrders.push(order);
+      localStorage.setItem("orders", JSON.stringify(existingOrders));
+      localStorage.removeItem("cart");
+    }
+
+    cardNumber.addEventListener('input', () => cardNumber.value = cardNumber.value.replace(/\D/g, ''));
+    validThrough.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '');
+      if (val.length > 2) val = val.slice(0,2) + '/' + val.slice(2,4);
+      e.target.value = val;
+    });
+    cardName.addEventListener('input', () => cardName.value = cardName.value.replace(/[^a-zA-Z\s]/g, ''));
+    cardNickname.addEventListener('input', () => cardNickname.value = cardNickname.value.replace(/[^a-zA-Z\s]/g, ''));
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+ 
+    :root {
+      --gold: #ffcc00;
+    }
+
+    body { background: #121212; color: #fff; font-family: 'Segoe UI', sans-serif; }
+
+    .cart-container { margin: 50px auto; }
+    .cart-item {
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      padding: 10px 15px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    }
+    .cart-item img { width: 80px; height: 80px; border-radius: 8px; object-fit: cover; }
+    .item-title { color: var(--gold); font-weight: 600; margin-bottom: 5px; }
+    .item-price { color: var(--gold); font-weight: 700; margin-bottom: 5px; }
+    .btn-remove { color: #ff6666; border: none; background: none; font-weight: 600; cursor: pointer; }
+    .btn-remove:hover { color: #ff3333; text-decoration: underline; }
+
+    .qty-input {
+      width: 50px;
+      text-align: center;
+      background: #333;
+      border: 1px solid #555;
+      color: #fff;
+      border-radius: 6px;
+      padding: 5px;
+      font-weight: 600;
+    }
+
+    .summary-box { background: #1e1e1e; padding: 20px; border-radius: 10px; position: sticky; top: 100px; box-shadow: 0 0 10px rgba(0,0,0,0.6); }
+    .summary-box h5 { color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 10px; margin-bottom: 15px; }
+    .btn-buy { background-color: var(--gold); border: none; color: #000; font-weight: 600; padding: 8px 15px; border-radius: 6px; transition: 0.3s; }
+    .btn-buy:hover { background-color: #ffdb4d; }
+    .btn-add-more { background: none; color: var(--gold); border: 1px solid var(--gold); font-weight: 600; border-radius: 6px; padding: 8px 15px; transition: 0.3s; }
+    .btn-add-more:hover { background: var(--gold); color: #000; }
+
+    .suggested-section { margin-top: 40px; }
+    .suggested-title { color: var(--gold); margin-bottom: 15px; }
+    .suggested-item { background: #1e1e1e; border-radius: 10px; overflow: hidden; box-shadow: 0 0 8px rgba(0,0,0,0.5); }
+    .suggested-item img { height: 150px; object-fit: cover; width: 100%; }
+    .suggested-item h6 { color: var(--gold); font-weight: 600; margin-top: 10px; }
+
+    .offer-box { background: #1e1e1e; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 0 8px rgba(0,0,0,0.6); }
+    .offer-box h5 { color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 10px; margin-bottom: 15px; }
+    .coupon-input { background: #333; border: 1px solid #555; color: #fff; border-radius: 6px; padding: 8px; width: 100%; }
+    .btn-apply { background: var(--gold); border: none; color: #000; font-weight: 600; padding: 8px 15px; border-radius: 6px; transition: 0.3s; width: 100%; }
+    .btn-apply:hover { background-color: #ffdb4d; }
+
+    .btn-gold {
+  background-color: #ffcc00; /* Gold color */
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.btn-gold:hover {
+  background-color: #ffdb4d; /* Slightly lighter gold on hover */
+  color: #000;
+}
+
+/* Show the default number input arrows again */
+.qty-input::-webkit-inner-spin-button,
+.qty-input::-webkit-outer-spin-button {
+  -webkit-appearance: inner-spin-button;
+  opacity: 1;
+  margin: 0;
+}
+
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap; /* allow wrapping */
+}
+
+.item-title,
+.item-price {
+  white-space: nowrap; /* keep them in one line */
+  overflow: hidden;    /* hide overflow */
+  text-overflow: ellipsis; /* show ... for long text */
+  max-width: 150px;    /* adjust as needed */
+}
+
+  

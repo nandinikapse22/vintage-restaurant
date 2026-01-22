@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terma and Conditions | Vintage Restaurant & Bar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    :root {
+      --gold: #d4af37;
+      --dark-bg: #111;
+      --light-bg: #222;
+      --text-light: #ffffff;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    }
+    .navbar-brand img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .nav-link {
+      color: var(--text-light);
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold);
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #000;
+      font-weight: 600;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-gold:hover {
+      background: #ffdb4d;
+    }
+
+    /* Rules Section */
+    .rules-section {
+      max-width: 1000px;
+      margin: 80px auto;
+      padding: 20px;
+    }
+    .rules-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .rules-header h1 {
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .rules-header p {
+      color: #ccc;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .rules-list {
+      background: var(--light-bg);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    }
+
+    .rules-list h5 {
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .rules-list ol li {
+      margin-bottom: 15px;
+      line-height: 1.7;
+    }
+
+    footer {
+      background: #000;
+      color: #bbb;
+      padding: 40px 0 20px;
+    }
+    footer h6 {
+      color: var(--gold);
+      margin-bottom: 15px;
+    }
+    footer a {
+      color: #bbb;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--gold);
+    }
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 15px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <img src="img/restaurant-logo.png" alt="Logo">
+      
+    </a>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="reservation.html">Reservations</a></li>
+        <li class="nav-item"><a class="nav-link" href="offers.html">Offers</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <form class="d-flex me-3">
+        <input class="form-control form-control-sm me-2" type="search" placeholder="Search dishes...">
+        <button class="btn btn-gold btn-sm" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-light btn-sm"><i class="bi bi-person-circle"></i> Login</button>
+        <button class="btn btn-gold btn-sm" onclick="window.location.href='cart.html'">
+  <i class="bi bi-cart3"></i> Cart
+</button>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <!-- RULES SECTION -->
+  <section class="rules-section container">
+    <div class="rules-header">
+      <h1>Rules & Regulations</h1>
+      <p>To ensure a safe, enjoyable, and respectful dining experience for all our guests at Vintage Restaurant & Bar, we request you to follow these simple guidelines.</p>
+    </div>
+
+    <div class="rules-list">
+      <h5><i class="bi bi-shield-check me-2"></i> General Conduct</h5>
+      <ol>
+        <li>Guests are expected to maintain respectful behavior towards staff and other patrons at all times.</li>
+        <li>Any form of harassment, misconduct, or disturbance will not be tolerated.</li>
+        <li>Children must be accompanied and supervised by adults at all times.</li>
+      </ol>
+
+      <h5><i class="bi bi-cup-hot me-2"></i> Dining & Reservation Policies</h5>
+      <ol>
+        <li>Reservations are confirmed only upon receiving a confirmation message or email from our team.</li>
+        <li>Tables will be held for a maximum of 15 minutes past your reserved time.</li>
+        <li>Outside food and beverages are strictly prohibited within the premises.</li>
+        <li>We reserve the right to deny entry or service based on inappropriate dress or behavior.</li>
+      </ol>
+
+      <h5><i class="bi bi-credit-card-2-front me-2"></i> Payments & Cancellations</h5>
+      <ol>
+        <li>We accept all major credit/debit cards, UPI, and digital wallets.</li>
+        <li>Cancellations must be made at least 2 hours prior to the reservation time.</li>
+        <li>Any damages caused to property or furnishings will be chargeable.</li>
+      </ol>
+
+      <h5><i class="bi bi-cup-straw me-2"></i> Bar & Alcohol Policy</h5>
+      <ol>
+        <li>Alcohol is served only to guests aged 21 and above with valid ID proof.</li>
+        <li>Management reserves the right to refuse service to intoxicated guests.</li>
+        <li>Outside liquor is not permitted under any circumstances.</li>
+      </ol>
+
+      <h5><i class="bi bi-bag-check me-2"></i> Takeaway & Home Delivery Policies</h5>
+      <ol>
+        <li>All takeaway and delivery orders must be placed through our official website, app, or contact number.</li>
+        <li>Orders once confirmed cannot be modified or canceled after preparation has begun.</li>
+        <li>Delivery timings may vary based on location, weather, and order volume.</li>
+        <li>Customers are requested to check their orders upon delivery; complaints after 30 minutes of delivery will not be entertained.</li>
+        <li>All takeaway and delivery packaging is chargeable and included in the final bill.</li>
+        <li>Our delivery personnel will deliver orders only to the address confirmed during order placement.</li>
+        <li>For safety reasons, delivery agents are not permitted to enter customer premises.</li>
+        <li>In case of online payment failures, please contact our support team for assistance before re-ordering.</li>
+      </ol>
+
+      <h5><i class="bi bi-shield-lock me-2"></i> Safety & Security</h5>
+      <ol>
+        <li>For everyone’s safety, CCTV cameras are installed across the premises.</li>
+        <li>Smoking is permitted only in designated areas.</li>
+        <li>Guests are responsible for their personal belongings; the management will not be liable for any loss.</li>
+      </ol>
+
+      <p class="mt-4 text-warning"><strong>Note:</strong> By entering Vintage Restaurant & Bar or placing an order (dine-in, takeaway, or delivery), guests agree to abide by these rules. The management reserves the right to modify these terms at any time.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+<footer class="bg-dark text-light pt-5 pb-3">
+  <div class="container">
+    <div class="row gy-4">
+      <!-- 1️⃣ Brand -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+        <a href="{% url 'home' %}" class="d-inline-block mb-3">
+          <img
+            src="img/restaurant-logo.png"
+            alt="Vintage Store"
+            class="img-fluid rounded-circle"
+            style="max-width: 60px"
+          />
+        </a>
+        <p class="small mb-2">
+          Your one-stop shop for quality products and great deals.
+        </p>
+        <div class="d-flex gap-3">
+<a href="https://www.facebook.com/login" class="text-light" target="_blank">
+  <i class="bi bi-facebook fs-5"></i>
+</a>
+<a href="https://www.instagram.com/accounts/login/" class="text-light" target="_blank">
+  <i class="bi bi-instagram fs-5"></i>
+</a>
+<a href="https://twitter.com/login" class="text-light" target="_blank">
+  <i class="bi bi-twitter fs-5"></i>
+</a>
+<a href="https://www.linkedin.com/login" class="text-light" target="_blank">
+  <i class="bi bi-linkedin fs-5"></i>
+</a>
+
+        </div>
+      </div>
+
+      <!-- 2️⃣ Company -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <h6 class="text-warning mb-3">Company</h6>
+        <ul class="list-unstyled small">
+          <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+          <li><a href="about-us.html" class="text-light text-decoration-none">About Us</a></li>
+          <li><a href="menu.html" class="text-light text-decoration-none">Menu</a></li>
+            <li><a href="reservation.html" class="text-light text-decoration-none">Reservations</a></li>
+              <li><a href="offers.html" class="text-light text-decoration-none">Offers</a></li>
+          <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+      
+        </ul>
+      </div>
+
+      <!-- 3️⃣ Customer Care -->
+      <div class="col-6 col-md-4 col-lg-2">
+        <h6 class="text-warning mb-3">Customer Care</h6>
+        <ul class="list-unstyled small">
+          <li><a href="faq.html" class="text-light text-decoration-none">FAQs</a></li>
+          <li><a href="shipping-policy.html" class="text-light text-decoration-none">Shipping Policy</a></li>
+          <li><a href="refund-policy.html" class="text-light text-decoration-none">Refund Policy</a></li>
+          <li><a href="privacy-policy.html" class="text-light text-decoration-none">Privacy Policy</a></li>
+          <li><a href="terms-and-conditions.html" class="text-light text-decoration-none">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- 4️⃣ Contact -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h6 class="text-warning mb-3">Contact Us</h6>
+        <p class="small mb-1">
+          <i class="bi bi-telephone-fill me-2 text-warning"></i>
+          <a href="tel:7717795204" class="text-light text-decoration-none">+91 77177 95204</a>
+        </p>
+        <p class="small mb-1">
+          <i class="bi bi-envelope-fill me-2 text-warning"></i>
+          <a href="mailto:support@vintagecart.com" class="text-light text-decoration-none">
+            support@vintagecart.com
+          </a>
+        </p>
+        <p class="small mb-0">
+          <i class="bi bi-geo-alt-fill me-2 text-warning"></i>
+          123 Market Avenue, City Center, India
+        </p>
+      </div>
+
+      <!-- 5️⃣ Newsletter -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <h6 class="text-warning mb-3">Join Our Newsletter</h6>
+        <p class="small">Subscribe to get updates on sales and new arrivals.</p>
+        <form class="d-flex">
+          <input
+            type="email"
+            class="form-control form-control-sm me-2"
+            placeholder="Enter your email"
+          />
+          <button type="submit" class="btn btn-warning btn-sm">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <hr class="border-secondary mt-4 mb-3" />
+
+    <!-- ✅ Footer bottom in one line -->
+    <div class="text-center small d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
+      <span>© 2025 VintageCart | All Rights Reserved</span>
+      <span>|</span>
+      <span>
+        Designed by
+        <a
+          href="https://kavyainfoweb.com/"
+          class="text-warning text-decoration-none"
+          target="_blank"
+        >Kavya Infoweb Pvt Ltd</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

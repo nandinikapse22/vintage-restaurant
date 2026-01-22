@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Help Centre | Vintage Restaurant & Bar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    :root {
+      --gold: #d4af37;
+      --dark-bg: #111;
+      --light-bg: #222;
+      --text-light: #ffffff;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    }
+    .navbar-brand img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .nav-link {
+      color: var(--text-light);
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--gold);
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #000;
+      font-weight: 600;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-gold:hover {
+      background: #ffdb4d;
+    }
+
+    /* Help Centre Content */
+    .help-section {
+      margin: 80px auto;
+      max-width: 1100px;
+    }
+
+    .help-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .help-header h1 {
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .help-header p {
+      color: var(--text-light);
+      opacity: 0.9;
+    }
+
+    .faq-box {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    }
+    .faq-box h5 {
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .faq-box p {
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .contact-help {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 30px;
+      margin-top: 40px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    }
+
+    .contact-help h4 {
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .contact-help input,
+.contact-help textarea {
+  background: #333;
+  border: 1px solid #444;
+  color: #fff !important; /* Ensures visible white text */
+  border-radius: 6px;
+  padding: 10px;
+  caret-color: #fff; /* Makes the typing cursor visible */
+}
+
+.contact-help input::placeholder,
+.contact-help textarea::placeholder {
+  color: #aaa; /* Softer placeholder color */
+}
+
+.contact-help input:focus,
+.contact-help textarea:focus {
+  background: #444; /* Slightly lighter when focused */
+  border-color: var(--gold);
+  color: #fff;
+  outline: none;
+  box-shadow: 0 0 5px var(--gold);
+}
+
+
+    .contact-help input::placeholder,
+    .contact-help textarea::placeholder {
+      color: #ccc; /* light gray placeholder for readability */
+    }
+
+    .contact-help input:focus,
+    .contact-help textarea:focus {
+      outline: 2px solid var(--gold);
+      box-shadow: none;
+      color: #fff;
+    }
+
+    footer {
+      background: #000;
+      color: #bbb;
+      padding: 40px 0 20px;
+    }
+    footer h6 {
+      color: var(--gold);
+      margin-bottom: 15px;
+    }
+    footer a {
+      color: #bbb;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--gold);
+    }
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 15px;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <img src="img/restaurant-logo.png" alt="Logo">
+      
+    </a>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="reservation.html">Reservations</a></li>
+        <li class="nav-item"><a class="nav-link" href="offers.html">Offers</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+      <form class="d-flex me-3">
+        <input class="form-control form-control-sm me-2" type="search" placeholder="Search dishes...">
+        <button class="btn btn-gold btn-sm" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-light btn-sm"><i class="bi bi-person-circle"></i> Login</button>
+        <button class="btn btn-gold btn-sm" onclick="window.location.href='cart.html'">
+  <i class="bi bi-cart3"></i> Cart
+</button>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <!-- HELP CENTRE MAIN -->
+  <div class="help-section container">
+    <div class="help-header">
+      <h1>Help Centre</h1>
+      <p>Need assistance? We’re here to make your Vintage Restaurant & Bar experience memorable.</p>
+    </div>
+
+    <div class="faq-section">
+      <div class="faq-box">
+        <h5><i class="bi bi-question-circle text-warning"></i> How can I make a reservation?</h5>
+        <p>You can reserve a table directly through our <a href="reservation.html" class="text-warning">Reservation Page</a> or call us at <strong>+91 7717795204</strong>.</p>
+      </div>
+
+      <div class="faq-box">
+        <h5><i class="bi bi-credit-card text-warning"></i> What payment options are available?</h5>
+        <p>We accept all major debit/credit cards, UPI, and cash payments at the restaurant.</p>
+      </div>
+
+      <div class="faq-box">
+        <h5><i class="bi bi-truck text-warning"></i> Do you provide home delivery?</h5>
+        <p>Yes! We offer home delivery for orders placed online. Charges may vary based on distance.</p>
+      </div>
+
+      <div class="faq-box">
+        <h5><i class="bi bi-gift text-warning"></i> Are there any ongoing offers?</h5>
+        <p>Visit our <a href="offers.html" class="text-warning">Offers Page</a> for the latest discounts and festive deals.</p>
+      </div>
+
+      <div class="faq-box">
+        <h5><i class="bi bi-emoji-smile text-warning"></i> How can I share feedback?</h5>
+        <p>You can submit feedback using the form below or email us directly at <strong>samiran@kavyainfoweb.com</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Contact Help Form -->
+    <div class="contact-help mt-5">
+      <h4>Contact Our Support Team</h4>
+      <form>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <input type="text" placeholder="Your Name" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <input type="email" placeholder="Your Email" class="form-control" required>
+          </div>
+          <div class="col-12">
+            <textarea rows="4" placeholder="Describe your issue or query..." class="form-control" required></textarea>
+          </div>
+          <div class="col-12 text-end">
+            <button class="btn btn-gold px-4">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-md-3">
+        <a href="index.html" class="d-block mb-2">
+          <img src="img/restaurant-logo.png" alt="Vintage Restaurant & Bar Logo" style="max-width:150px; border-radius: 50%;">
+        </a>
+        <p>Where golden lights meet unforgettable flavors. Experience the best in town.</p>
+        <div class="d-flex gap-3">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+  <i class="bi bi-facebook fs-4"></i>
+</a>
+<a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+  <i class="bi bi-instagram fs-4"></i>
+</a>
+<a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+  <i class="bi bi-twitter fs-4"></i>
+</a>
+
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h6>Quick Links</h6>
+        <ul class="list-unstyled">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="reservation.html">Reservations</a></li>
+          <li><a href="offers.html">Offers</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Support</h6>
+        <ul class="list-unstyled">
+          <li><a href="help-centre.html">Help Center</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="refund-policy.html">Refund Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Visit Us</h6>
+        <a href="tel:7717795204"><p>Contact us:<br>7717795204</p></a>
+        <p>123 Gold Street, City Center<br>Open: 4 PM – 12 AM</p>
+      </div>
+    </div>
+    <div class="footer-bottom text-center pt-3">
+      <small>© 2025 Vintage Restaurant & Bar | Design and developed by 
+        <a href="https://kavyainfoweb.com/" target="_blank">Kavya Infoweb Pvt Ltd</a>
+      </small>
+    </div>
+  </div>
+</footer>
+<script>
+
+  document.querySelector('.contact-help form').addEventListener('submit', function(e) {
+  e.preventDefault(); // Prevent form from reloading the page
+
+  // Option 1: Using Bootstrap-style alert message
+  const successAlert = document.createElement('div');
+  successAlert.className = 'alert alert-success mt-3';
+  successAlert.textContent = '✅ Thank you! Your message has been successfully submitted. Our team will contact you soon.';
+
+  // Remove any existing alerts before showing a new one
+  const existingAlert = this.parentElement.querySelector('.alert');
+  if (existingAlert) existingAlert.remove();
+
+  // Append the message just below the form
+  this.parentElement.appendChild(successAlert);
+
+  // Reset form fields
+  this.reset();
+
+  // Automatically hide the message after 5 seconds
+  setTimeout(() => {
+    successAlert.remove();
+  }, 5000);
+});
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
